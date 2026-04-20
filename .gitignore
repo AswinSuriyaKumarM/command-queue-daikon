@@ -8,3 +8,5 @@ build/
 !gradle-wrapper.jar
 *.inv.gz
 *.dtrace.gz
+*.inv.gz
+*.dtrace.gz
