@@ -1,0 +1,102 @@
+---
+
++this == this → INVALID
+Reason: Trivial identity, no meaningful constraint.
+
++this.threadId == this.threadId → INVALID
+Reason: Trivial self-equality.
+
++this.queuedEvents == this.queuedEvents → INVALID
+Reason: Trivial self-equality.
+
++this.paused == this.paused → INVALID
+Reason: Trivial self-equality.
+
++this.distinctOnly == this.distinctOnly → INVALID
+Reason: Trivial self-equality.
+
++this.limit == this.limit → INVALID
+Reason: Trivial self-equality.
+
++this.receiver == this.receiver → INVALID
+Reason: Trivial self-equality.
+
++this.receiver.getClass().getName() == this.receiver.getClass().getName() → INVALID
+Reason: Trivial equality.
+
++this.isEmittingEvent == this.isEmittingEvent → INVALID
+Reason: Trivial self-equality.
+
++this.previouslyEmittedEvent == this.previouslyEmittedEvent → INVALID
+Reason: Trivial self-equality.
+
++this.previouslyEmittedEvent.getClass().getName() == this.previouslyEmittedEvent.getClass().getName() → INVALID
+Reason: Trivial equality.
+
++receiver == receiver → INVALID
+Reason: Trivial self-equality.
+
++receiver.getClass().getName() == receiver.getClass().getName() → INVALID
+Reason: Trivial equality.
+
++this.threadId == 1 → INVALID
+Reason: Thread ID not fixed.
+
++0 <= this.threadId <= 63 → INVALID
+Reason: No enforced bound.
+
++this.threadId != 0 → VALID
+Reason: Thread IDs are always non-zero.
+
++this.threadId <= 1 → INVALID
+Reason: Can be greater than 1.
+
++this.threadId == 1 → INVALID
+Reason: Not guaranteed.
+
++this.threadId >= 0 → VALID
+Reason: Always non-negative.
+
++this.threadId >= 1 → VALID
+Reason: Always ≥ 1.
+
++this.threadId is a power of 2 → INVALID
+Reason: No such constraint.
+
++this.threadId is boolean → INVALID
+Reason: Wrong type.
+
++this.queuedEvents != null → VALID
+Reason: Initialized once and never reassigned.
+
++this.limit one of { -1, 3 } → INVALID
+Reason: Sample-specific values.
+
++this.limit != 0 → INVALID
+Reason: Limit can be 0 via builder.
+
++this.limit <= 3 → INVALID
+Reason: Limit can be greater than 3.
+
++this.limit >= -1 → VALID
+Reason: Default and builder allow ≥ -1.
+
++this.threadId == this.threadId**2 → INVALID
+Reason: Not mathematically valid.
+
++this.threadId == this.threadId**2 → INVALID
+Reason: Duplicate incorrect relation.
+
++warning: too few samples for daikon.inv.binary.twoScalar.LinearBinary invariant: 0 * this.threadId+ 0 * this.threadId + 0 == 0 → IGNORED
+Reason: Warning.
+
++warning: too few samples for daikon.inv.binary.twoScalar.LinearBinary invariant: 0 * this.limit+ 0 * this.limit + 0 == 0 → IGNORED
+Reason: Warning.
+
++this.receiver.getClass().getName() != this.previouslyEmittedEvent.getClass().getName() → INVALID
+Reason: No such constraint enforced.
+
++this.receiver.getClass().getName() != receiver.getClass().getName() → INVALID
+Reason: No guarantee of inequality.
+
+---

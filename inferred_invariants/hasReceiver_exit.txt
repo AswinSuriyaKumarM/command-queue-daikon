@@ -1,0 +1,394 @@
+---
+
+### **EXIT**
+
++this == orig(this) → INVALID
+Reason: Trivial identity, no meaningful constraint.
+
++this.threadId == this.threadId → INVALID
+Reason: Trivial self-equality.
+
++this.queuedEvents == this.queuedEvents → INVALID
+Reason: Trivial self-equality.
+
++this.paused == this.paused → INVALID
+Reason: Trivial self-equality.
+
++this.distinctOnly == this.distinctOnly → INVALID
+Reason: Trivial self-equality.
+
++this.limit == this.limit → INVALID
+Reason: Trivial self-equality.
+
++this.receiver == this.receiver → INVALID
+Reason: Trivial self-equality.
+
++this.receiver.getClass().getName() == this.receiver.getClass().getName() → INVALID
+Reason: Trivial equality.
+
++this.isEmittingEvent == this.isEmittingEvent → INVALID
+Reason: Trivial self-equality.
+
++this.previouslyEmittedEvent == this.previouslyEmittedEvent → INVALID
+Reason: Trivial self-equality.
+
++return == return → INVALID
+Reason: Trivial identity.
+
++orig(this) == orig(this) → INVALID
+Reason: Trivial identity.
+
++(this.receiver has only one value) <==> (return != 0) → INVALID
+Reason: Based on sample-specific constant behavior.
+
++(this.receiver has only one value) <==> (this.receiver != null) → INVALID
+Reason: Sample-specific, not guaranteed.
+
++this.threadId == 1 → INVALID
+Reason: Thread ID not fixed.
+
++0 <= this.threadId <= 63 → INVALID
+Reason: No enforced bound.
+
++this.threadId != 0 → VALID
+Reason: Thread IDs are always non-zero.
+
++this.threadId <= 1 → INVALID
+Reason: Can be greater than 1.
+
++this.threadId == 1 → INVALID
+Reason: Not guaranteed.
+
++this.threadId >= 0 → VALID
+Reason: Always non-negative.
+
++this.threadId >= 1 → VALID
+Reason: Always ≥ 1.
+
++this.threadId is a power of 2 → INVALID
+Reason: No such constraint.
+
++this.threadId is boolean → INVALID
+Reason: Wrong type.
+
++this.queuedEvents != null → VALID
+Reason: Initialized once and never reassigned.
+
++this.limit != 0 → INVALID
+Reason: Can be 0 via builder.
+
++this.limit <= -1 → INVALID
+Reason: Can be > -1.
+
++this.limit == -1 → INVALID
+Reason: Builder can change it.
+
++this.limit >= -1 → VALID
+Reason: Default and builder allow ≥ -1.
+
++this.receiver one of { 0, 1193797116 } → INVALID
+Reason: Sample-specific values.
+
++orig(this) has only one value → INVALID
+Reason: Sample-specific, not enforced.
+
++this.threadId == this.threadId**2 → INVALID
+Reason: Not mathematically valid.
+
++this.threadId == this.threadId**2 → INVALID
+Reason: Duplicate incorrect relation.
+
++warning: too few samples...threadId → IGNORED
+Reason: Warning.
+
++warning: too few samples...limit → IGNORED
+Reason: Warning.
+
+---
+
+### **EXIT (return == true)**
+
++this == orig(this) → INVALID
+Reason: Trivial identity.
+
++this.threadId == this.threadId → INVALID
+Reason: Trivial.
+
++this.threadId == orig(this.threadId) → VALID
+Reason: Field not modified.
+
++this.queuedEvents == this.queuedEvents → INVALID
+Reason: Trivial.
+
++this.queuedEvents == orig(this.queuedEvents) → VALID
+Reason: Not modified.
+
++this.paused == this.paused → INVALID
+Reason: Trivial.
+
++this.paused == orig(this.paused) → VALID
+Reason: Not modified.
+
++this.distinctOnly == this.distinctOnly → INVALID
+Reason: Trivial.
+
++this.distinctOnly == orig(this.distinctOnly) → VALID
+Reason: Not modified.
+
++this.limit == this.limit → INVALID
+Reason: Trivial.
+
++this.limit == orig(this.limit) → VALID
+Reason: Not modified.
+
++this.receiver == this.receiver → INVALID
+Reason: Trivial.
+
++this.receiver == orig(this.receiver) → VALID
+Reason: Not modified.
+
++this.receiver.getClass().getName() == this.receiver.getClass().getName() → INVALID
+Reason: Trivial.
+
++this.receiver.getClass().getName() == orig(...) → VALID
+Reason: Not modified.
+
++this.isEmittingEvent == this.isEmittingEvent → INVALID
+Reason: Trivial.
+
++this.isEmittingEvent == orig(this.isEmittingEvent) → VALID
+Reason: Not modified.
+
++this.previouslyEmittedEvent == this.previouslyEmittedEvent → INVALID
+Reason: Trivial.
+
++this.previouslyEmittedEvent == orig(...) → VALID
+Reason: Not modified.
+
++return == return → INVALID
+Reason: Trivial.
+
++orig(this) == orig(this) → INVALID
+Reason: Trivial.
+
++this.threadId == 1 → INVALID
+Reason: Not guaranteed.
+
++0 <= this.threadId <= 63 → INVALID
+Reason: No bound.
+
++this.threadId != 0 → VALID
+Reason: Always non-zero.
+
++this.threadId <= 1 → INVALID
+Reason: Can be >1.
+
++this.threadId == 1 → INVALID
+Reason: Not guaranteed.
+
++this.threadId >= 0 → VALID
+Reason: Non-negative.
+
++this.threadId >= 1 → VALID
+Reason: ≥1.
+
++this.threadId is a power of 2 → INVALID
+Reason: No constraint.
+
++this.threadId is boolean → INVALID
+Reason: Wrong type.
+
++this.queuedEvents has only one value → INVALID
+Reason: Sample-specific.
+
++this.queuedEvents != null → VALID
+Reason: Always initialized.
+
++this.paused == false → INVALID
+Reason: Can change.
+
++this.distinctOnly == false → INVALID
+Reason: Builder can change.
+
++this.limit == -1 → INVALID
+Reason: Builder can change.
+
++this.limit != 0 → INVALID
+Reason: Can be 0.
+
++this.limit <= -1 → INVALID
+Reason: Can be > -1.
+
++this.limit == -1 → INVALID
+Reason: Not guaranteed.
+
++this.limit >= -1 → VALID
+Reason: Always ≥ -1.
+
++this.receiver != null → VALID
+Reason: return true ⇒ receiver != null.
+
++this.receiver.getClass().getName() == ... → INVALID
+Reason: Sample-specific.
+
++this.isEmittingEvent == false → INVALID
+Reason: Not guaranteed.
+
++this.previouslyEmittedEvent == null → INVALID
+Reason: Not guaranteed.
+
++return != 0 → INVALID
+Reason: Redundant numeric form.
+
++orig(this) has only one value → INVALID
+Reason: Sample-specific.
+
++this.threadId == this.threadId**2 → INVALID
+Reason: Incorrect math.
+
++this.threadId == this.threadId**2 → INVALID
+Reason: Duplicate.
+
++warning...threadId → IGNORED
+Reason: Warning.
+
++warning...limit → IGNORED
+Reason: Warning.
+
+---
+
+### **EXIT (return == false)**
+
++this == orig(this) → INVALID
+Reason: Trivial.
+
++this.threadId == this.threadId → INVALID
+Reason: Trivial.
+
++this.threadId == orig(this.threadId) → VALID
+Reason: Not modified.
+
++this.queuedEvents == this.queuedEvents → INVALID
+Reason: Trivial.
+
++this.queuedEvents == orig(this.queuedEvents) → VALID
+Reason: Not modified.
+
++this.paused == this.paused → INVALID
+Reason: Trivial.
+
++this.paused == orig(this.paused) → VALID
+Reason: Not modified.
+
++this.distinctOnly == this.distinctOnly → INVALID
+Reason: Trivial.
+
++this.distinctOnly == orig(this.distinctOnly) → VALID
+Reason: Not modified.
+
++this.limit == this.limit → INVALID
+Reason: Trivial.
+
++this.limit == orig(this.limit) → VALID
+Reason: Not modified.
+
++this.receiver == this.receiver → INVALID
+Reason: Trivial.
+
++this.receiver == orig(this.receiver) → VALID
+Reason: Not modified.
+
++this.isEmittingEvent == this.isEmittingEvent → INVALID
+Reason: Trivial.
+
++this.isEmittingEvent == orig(this.isEmittingEvent) → VALID
+Reason: Not modified.
+
++this.previouslyEmittedEvent == this.previouslyEmittedEvent → INVALID
+Reason: Trivial.
+
++this.previouslyEmittedEvent == orig(...) → VALID
+Reason: Not modified.
+
++return == return → INVALID
+Reason: Trivial.
+
++orig(this) == orig(this) → INVALID
+Reason: Trivial.
+
++this.threadId == 1 → INVALID
+Reason: Not guaranteed.
+
++0 <= this.threadId <= 63 → INVALID
+Reason: No bound.
+
++this.threadId != 0 → VALID
+Reason: Always non-zero.
+
++this.threadId <= 1 → INVALID
+Reason: Can be >1.
+
++this.threadId == 1 → INVALID
+Reason: Not guaranteed.
+
++this.threadId >= 0 → VALID
+Reason: Non-negative.
+
++this.threadId >= 1 → VALID
+Reason: ≥1.
+
++this.threadId is a power of 2 → INVALID
+Reason: Not enforced.
+
++this.threadId is boolean → INVALID
+Reason: Wrong type.
+
++this.queuedEvents has only one value → INVALID
+Reason: Sample-specific.
+
++this.queuedEvents != null → VALID
+Reason: Always initialized.
+
++this.paused == false → INVALID
+Reason: Can change.
+
++this.distinctOnly == false → INVALID
+Reason: Builder can change.
+
++this.limit == -1 → INVALID
+Reason: Builder can change.
+
++this.limit != 0 → INVALID
+Reason: Can be 0.
+
++this.limit <= -1 → INVALID
+Reason: Can be > -1.
+
++this.limit == -1 → INVALID
+Reason: Not guaranteed.
+
++this.limit >= -1 → VALID
+Reason: Always ≥ -1.
+
++this.isEmittingEvent == false → INVALID
+Reason: Not guaranteed.
+
++this.previouslyEmittedEvent == null → INVALID
+Reason: Not guaranteed.
+
++orig(this) has only one value → INVALID
+Reason: Sample-specific.
+
++this.threadId == this.threadId**2 → INVALID
+Reason: Incorrect math.
+
++this.threadId == this.threadId**2 → INVALID
+Reason: Duplicate.
+
++warning...threadId → IGNORED
+Reason: Warning.
+
++warning...limit → IGNORED
+Reason: Warning.
+
+---
