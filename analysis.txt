@@ -1,0 +1,58 @@
+Post Condition for CommandQueue()
+1. queuedEvents != null - Present in Set B 
+2. queuedEvents is empty - Not present in Set A or Set B
+3. paused == false - Present in both Set A and Set B
+4. distinctOnly == false - Present in both Set A and Set B
+5. limit == -1 - Present in both Set A and Set B
+
+
+Post Condition for distinctOnly()
+1. this.distinctOnly == true  - Present in both Set A and Set B
+2. return == this  - Present in both Set A and Set B
+3. return != null  - Present in Set B
+
+
+Post Condition for limit(int limit)
+1. this.limit == limit - Present in Set B
+2. return == this - Present in both Set A and Set B
+3. return != null  - Present in Set B
+
+
+Post Condition for build()
+1. return != null  - Present in Set B
+
+
+Post Condition for verifyCurrentThread()
+1. threadId != 0  - Present in Set B
+  
+
+Post Condition for receiveCommand(T command)
+1. threadId != 0  - Present in Set B
+
+
+Pre Condition for hasReceiver()
+1. threadId != 0  - Present in Set B
+
+
+Post Condition for hasReceiver()
+1. return == true  - Present in Set B
+2. return == false  - Present in Set B
+
+
+Post Condition for canEmitEvents()
+1. return receiver != null || isEmittingEvent == false || paused == false  - Present in both Set A and Set B
+2. return receiver == null || isEmittingEvent == true || paused == true  - Not present in both Set A and Set B
+
+
+Pre Condition for setReceiver()
+1. threadId != 0  - Present in Set B
+2. receiver == null  - Not present in both Set A and Set B
+3. receiver != null  - Present in both Set A and Set B
+
+
+Pre Condition for detachReceiver()
+1. threadId != 0  - Present in Set B
+
+
+Post Condition for detachReceiver()
+1. receiver == null  - Present in both Set A and Set B
